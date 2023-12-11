@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VES Data</title>
+</head>
+<body>
+    <h1>VES Data</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Account Number</th>
+            <th>FIO</th>
+            <th>Address</th>
+            <th>IPU Info</th>
+            <th>Comments</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <td><a href="{{ url_for('edit', id=row[0]) }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
