@@ -40,8 +40,18 @@ def edit(id):
 
     if request.method == 'POST':
         # Обновление данных в базе данных
+        new_account_number = request.form['account_number']
+        new_fio = request.form['fio']
+        new_address = request.form['address']
+        new_ipu_info = request.form['ipu_info']
         new_comments = request.form['comments']
-        cursor.execute('UPDATE ves_data SET comments = ? WHERE id = ?', (new_comments, id))
+
+        cursor.execute('''
+            UPDATE ves_data 
+            SET account_number = ?, fio = ?, address = ?, ipu_info = ?, comments = ? 
+            WHERE id = ?
+        ''', (new_account_number, new_fio, new_address, new_ipu_info, new_comments, id))
+
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
